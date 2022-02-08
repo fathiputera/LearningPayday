@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     use HasFactory;
+    use HasUuid;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +36,11 @@ class Employee extends Model
         'id' => 'integer',
         'department_id' => 'integer',
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
 
     public function paychecks()
     {
